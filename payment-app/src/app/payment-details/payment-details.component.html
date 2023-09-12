@@ -1,11 +1,15 @@
-<section class="bg-body-secondary mt-5 d-flex flex-column align-items-stretch text-center py-5 rounded-4">
+<section class="bg-body-secondary mt-5 d-flex flex-column text-center py-5 rounded-4">
     <h1 class="display-6 fw-bold">Register your payment detail</h1>
-    <div class="bg-white row mt-5 p-2 pt-4">
+    <div class="bg-white row mt-5 p-1 pt-4 pb-4">
         <div class="col-6">
             <app-payment-detail-form />
         </div>
-        <div class="col-6">
-            List payment details
+        <div class="col-6"
+             *ngFor="let payment of paymentList">
+            {{payment.cardOwnerName}}
         </div>
     </div>
+    <button class="btn btn-warning"
+            type="button"
+            (click)="refetch()">Refresh</button>
 </section>
