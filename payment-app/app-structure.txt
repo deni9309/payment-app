@@ -1,0 +1,23 @@
+src
+|
+|___app
+|   |
+|   |___payment-details
+|   |   |
+|   |   |___payment-details.component.ts/html
+|   |   |
+|   |   |___payment-detail-form
+|   |       |
+|   |       |___payment-detail-form.component.ts/html
+|   |
+|   |___shared
+|   |   |
+|   |   |___payment-detail.service.ts
+|   |   |
+|   |   |___payment-detail.model.ts
+|   |
+|   |___app.module.ts
+|
+|___style.scss(global scss rules)
+|
+|___index.html (cdn path for bootstrap & fa icons)
