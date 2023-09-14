@@ -10,7 +10,7 @@ using PaymentAPI.Models;
 
 namespace PaymentAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/payment-detail")]
     [ApiController]
     [EnableCors("AllowAll")]
     public class PaymentDetailController : ControllerBase

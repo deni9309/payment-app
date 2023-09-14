@@ -1,7 +1,7 @@
-import { PaymentDetail } from './payment-detail.model';
+import { PaymentDetailModel } from './payment-detail.model';
 
 describe('PaymentDetail', () => {
   it('should create an instance', () => {
-    expect(new PaymentDetail()).toBeTruthy();
+    expect(new PaymentDetailModel()).toBeTruthy();
   });
 });

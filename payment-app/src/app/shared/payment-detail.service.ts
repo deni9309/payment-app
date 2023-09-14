@@ -14,6 +14,10 @@ export class PaymentDetailService {
     constructor(private http: HttpClient) { }
 
     getPaymentDetailList$(): Observable<PaymentDetail[]> {
-        return this.http.get<PaymentDetail[]>(`${this.apiUrl}/PaymentDetail`);
+        return this.http.get<PaymentDetail[]>(`${this.apiUrl}/payment-detail`);
+    }
+
+    addPaymentDetail$(data: PaymentDetail): Observable<void>{
+        return this.http.post<void>(`${this.apiUrl}/payment-detail`, {...data})
     }
 }

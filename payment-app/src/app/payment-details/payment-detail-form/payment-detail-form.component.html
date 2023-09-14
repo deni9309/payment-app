@@ -1,1 +1,47 @@
-<p>payment-detail-form works!</p>
+<form #formData="ngForm"
+      (ngSubmit)="formSubmitHandler(formData)" class="rounded-top-2 rounded-bottom-5 p-2 bg-success-subtle">
+    <p class="input-group-text d-flex align-items-start flex-column">
+        <label class="form-group pt-2"><i class="fas fa-id-card-clip text-secondary px-2"></i>Name on
+            Card</label>
+        <input class="form-control form-control-lg"
+               name="cardOwnerName"
+               ngModel
+               #cardOwnerName="ngModel"
+               required
+               minlength="3">
+    </p>
+    <p class="input-group-text d-flex align-items-start flex-column">
+        <label class="form-group pt-2"><i class="fas fa-credit-card text-secondary px-2"></i>Card Number</label>
+        <input class="form-control form-control-lg"
+               name="cardNumber"
+               ngModel
+               #cardNumber="ngModel"
+               required
+               minlength="16"
+               maxlength="16">
+    </p>
+    <p class="input-group-text d-flex align-items-start flex-column">
+        <label class="form-group pt-2"><i class="fas fa-calendar-xmark text-secondary px-2"></i>Expiration Date<cite class="fw-lighter text-muted"> (mm/yy)</cite></label>
+        <input class="form-control form-control-lg"
+               name="expirationDate"
+               placeholder="example: 11/28"
+               ngModel
+               #expirationDate="ngModel"
+               required
+               minlength="5"
+               maxlength="5">
+    </p>
+    <p class="input-group-text d-flex align-items-start flex-column">
+        <label class="form-group pt-2"><i class="fas fa-user-secret text-secondary px-2"></i>Card Security Code</label>
+        <input class="form-control form-control-lg"
+               name="securityCode"
+               placeholder="example: 968"
+               ngModel
+               #securityCode="ngModel"
+               required
+               minlength="3"
+               maxlength="3">
+    </p>
+
+    <p class="d-flex align-items-center flex-column"><button class="btn btn-outline-success">Save Payment Detail</button></p>
+</form>
