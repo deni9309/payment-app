@@ -30,9 +30,16 @@ export class PaymentDetailsComponent implements OnInit {
         })
     }
 
-    refetch(): void{
+    refetch(): void {
         this.refetchPaymentList$$.next(undefined);
         console.log('just reloaded list');
-        
+
     }
+
+    refetchOnFormSubmit(value: any) {
+        this.refetchPaymentList$$.next(undefined);
+        console.log('new item added via form');
+
+    }
+
 }

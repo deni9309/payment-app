@@ -6,7 +6,7 @@ namespace PaymentAPI.Models
     public class PaymentDetail
     {
         [Key]
-        public Guid PaymentDetailId { get; set; }
+        public Guid PaymentDetailId { get; set; } = new Guid();
 
         [Required]
         [Column(TypeName ="nvarchar(100)")]
