@@ -1,0 +1,43 @@
+p,
+div.d-flex p,
+div.d-flex {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+p+p,
+p+div.d-flex,
+div.d-flex+p {
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+}
+
+p+span,
+span+p {
+    margin: 0;
+}
+
+form span.text-danger {
+    display: block;
+    font-size: 0.8rem;
+    margin: 0rem;
+    padding-bottom: 0.1rem;
+    padding-top: 0rem;
+}
+
+p:last-of-type {
+    padding-top: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width:500px) {
+    form label,
+    form input::placeholder,
+    form p>button.btn.btn-outline-success {
+        font-size: 0.75rem !important;
+    }
+
+    form input {
+        font-size: 0.85rem;
+    }
+}
