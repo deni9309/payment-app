@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentDetailService } from '../shared/payment-detail.service';
-import { BehaviorSubject, combineLatest, mergeMap, withLatestFrom } from 'rxjs';
-import { PaymentDetail } from '../shared/Interfaces'
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { BehaviorSubject, combineLatest, mergeMap } from 'rxjs';
+
+import { PaymentDetailService } from '../shared/payment-detail.service';
+import { PaymentDetail } from '../shared/Interfaces'
 
 @Component({
     selector: 'app-payment-details',
@@ -15,7 +17,10 @@ export class PaymentDetailsComponent implements OnInit {
 
     refetchPaymentList$$ = new BehaviorSubject(undefined);
 
-    constructor(private paymentService: PaymentDetailService, private router: Router) { }
+    constructor(
+        private paymentService: PaymentDetailService,
+        private router: Router,
+        private toastr: ToastrService) { }
 
     ngOnInit(): void {
         combineLatest([
@@ -47,15 +52,18 @@ export class PaymentDetailsComponent implements OnInit {
     }
 
     paymentDetailDeleteHandler(paymentId: string) {
-        this.paymentService.deletePaymentDetail$(paymentId).subscribe({
-            next: () => {
-                this.refetch();
-            },
-            error: err => {
-                console.error(err.error.message);
-                this.router.navigate([ '/error' ])
-            }
-        })
+        if (confirm('Are you sure you want to delete this payment detail?')) {
+            this.paymentService.deletePaymentDetail$(paymentId).subscribe({
+                next: () => {
+                    this.refetch();
+                    this.toastr.error('Deleted successfully.', 'Delete payment detail');
+                },
+                error: err => {
+                    console.error(err.error.message);
+                    this.router.navigate([ '/error' ]);
+                }
+            })
+        }
     }
 
     populateForm(selectedRecord: PaymentDetail) {
