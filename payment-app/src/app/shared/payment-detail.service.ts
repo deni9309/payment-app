@@ -20,4 +20,12 @@ export class PaymentDetailService {
     addPaymentDetail$(data: CreatePaymentDetail): Observable<PaymentDetail> {
         return this.http.post<PaymentDetail>(`${this.apiUrl}/payment-detail`, { ...data })
     }
+
+    editPaymentDetail$(id: string, data: PaymentDetail): Observable<PaymentDetail> {
+        return this.http.put<PaymentDetail>(`${this.apiUrl}/payment-detail/${id}`, { ...data });
+    }
+
+    deletePaymentDetail$(paymentId: string): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/payment-detail/${paymentId}`);
+    }
 }

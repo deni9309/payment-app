@@ -1,6 +1,11 @@
 <form #formData="ngForm"
+      *ngIf="!isEditMode; else editModeTemplate"
       (ngSubmit)="formSubmitHandler(formData)"
+      [class.submitted]="formSubmitted"
+      autocomplete="off"
+      novalidate
       class="rounded-4">
+
     <p class="input-group-text d-flex align-items-start flex-column rounded-4 p-0">
         <label class="form-group-sm px-2 pt-2"><i class="fas fa-id-card-clip text-secondary px-2"></i>Name on
             Card</label>
@@ -43,8 +48,8 @@
     </ng-container>
 
     <div class="d-flex align-items-start column-gap-3">
-        <div>
-            <p class="input-group-text flex-column flex-fill align-items-start rounded-4 p-0">
+        <div class="flex-fill">
+            <p class="input-group-text flex-column align-items-start rounded-4 p-0">
                 <label class="form-group-sm px-2 pt-2"><i class="fas fa-calendar-xmark text-secondary px-2"></i>Valid
                     through<cite class="fw-lighter text-muted"> (mm/yy)</cite></label>
                 <input class="form-control rounded-top-0 rounded-bottom-4 form-control-lg"
@@ -69,8 +74,8 @@
             </ng-container>
         </div>
 
-        <div>
-            <p class="input-group-text flex-column flex-fill align-items-start rounded-4 p-0">
+        <div class="flex-fill">
+            <p class="input-group-text flex-column align-items-start rounded-4 p-0">
                 <label class="form-group-sm px-2 pt-2"><i class="fas fa-user-secret text-secondary px-2"></i>Security
                     Code</label>
                 <input class="form-control rounded-top-0 rounded-bottom-4 form-control-lg"
@@ -95,6 +100,117 @@
 
     </div>
 
-    <p class="d-flex align-items-center pb-0 flex-column"><button class="btn btn-outline-success">Save Payment
+    <p class="d-flex align-items-center mb-3 flex-column"><button class="btn btn-outline-success">Save Payment
             Detail</button></p>
 </form>
+
+<ng-template #editModeTemplate>
+    <form #formData="ngForm"
+          (ngSubmit)="formEditSubmitHandler(formData)"
+          [class.submitted]="formSubmitted"
+          autocomplete="off"
+          novalidate
+          class="rounded-4">
+
+        <p class="input-group-text d-flex align-items-start flex-column rounded-4 p-0">
+            <label class="form-group-sm px-2 pt-2"><i class="fas fa-id-card-clip text-secondary px-2"></i>Name on
+                Card</label>
+            <input class="form-control rounded-top-0 rounded-bottom-4 form-control-lg"
+                   placeholder="First and Last Name"
+                   name="cardOwnerName"
+                   ngModel
+                   #cardOwnerName="ngModel"
+                   required
+                   minlength="3"
+                   maxlength="100">
+        </p>
+        <ng-container *ngIf="cardOwnerName.touched && cardOwnerName.invalid">
+            <span class="px-3 text-danger"
+                  *ngIf="cardOwnerName.errors?.['required']">Please fill out the name on the card!</span>
+            <span class="px-3 text-danger"
+                  *ngIf="cardOwnerName.errors?.['minlength']">Name field must be at least 3 characters long!</span>
+            <span class="px-3 text-danger"
+                  *ngIf="cardOwnerName.errors?.['maxlength']">Name field must be up to 100 characters long!</span>
+        </ng-container>
+
+        <p class="input-group-text d-flex align-items-start flex-column rounded-4 p-0">
+            <label class="form-group-sm px-2 pt-2"><i class="fas fa-credit-card text-secondary px-2"></i>Card
+                Number</label>
+            <input class="form-control rounded-top-0 rounded-bottom-4 form-control-lg"
+                   placeholder="16 digit card number"
+                   name="cardNumber"
+                   ngModel
+                   #cardNumber="ngModel"
+                   required
+                   minlength="16"
+                   maxlength="16">
+        </p>
+        <ng-container *ngIf="cardNumber.touched && cardNumber.invalid">
+            <span class="px-3 text-danger"
+                  *ngIf="cardNumber.errors?.['required']">Please fill out the card number!</span>
+            <span class="px-3 text-danger"
+                  *ngIf="cardNumber.errors?.['minlength']">A valid card number must be 16 characters long!</span>
+            <span class="px-3 text-danger"
+                  *ngIf="cardNumber.errors?.['maxlength']">A valid card number must be 16 characters long!</span>
+        </ng-container>
+
+        <div class="d-flex align-items-start column-gap-3">
+            <div class="flex-fill">
+                <p class="input-group-text flex-column align-items-start rounded-4 p-0">
+                    <label class="form-group-sm px-2 pt-2"><i
+                           class="fas fa-calendar-xmark text-secondary px-2"></i>Valid
+                        through<cite class="fw-lighter text-muted"> (mm/yy)</cite></label>
+                    <input class="form-control rounded-top-0 rounded-bottom-4 form-control-lg"
+                           name="expirationDate"
+                           placeholder="E.g. 11/28"
+                           pattern="^(0|1){1}\d{1}\/2(3|4|5|6|7|8|9){1}$"
+                           ngModel
+                           #expirationDate="ngModel"
+                           required
+                           minlength="5"
+                           maxlength="5">
+                </p>
+                <ng-container *ngIf="expirationDate.touched && expirationDate.invalid">
+                    <span class="px-3 text-danger"
+                          *ngIf="expirationDate.errors?.['required']">Please, fill out card expiration date.</span>
+                    <span class="px-3 text-danger"
+                          *ngIf="expirationDate.errors?.['minlength']">Expiration date must be 5 characters long.</span>
+                    <span class="px-3 text-danger"
+                          *ngIf="expirationDate.errors?.['pattern']">Date is invalid! Please use format 'mm/yy'.</span>
+                    <span class="px-3 text-danger"
+                          *ngIf="expirationDate.errors?.['maxlength']">Expiration date must be 5 characters long.</span>
+                </ng-container>
+            </div>
+
+            <div class="flex-fill">
+                <p class="input-group-text flex-column align-items-start rounded-4 p-0">
+                    <label class="form-group-sm px-2 pt-2"><i
+                           class="fas fa-user-secret text-secondary px-2"></i>Security
+                        Code</label>
+                    <input class="form-control rounded-top-0 rounded-bottom-4 form-control-lg"
+                           name="securityCode"
+                           placeholder="CVV or CVC"
+                           ngModel
+                           #securityCode="ngModel"
+                           required
+                           minlength="3"
+                           maxlength="3">
+                </p>
+                <ng-container *ngIf="securityCode.touched && securityCode.invalid">
+                    <span class="px-3 text-danger"
+                          *ngIf="securityCode.errors?.['required']">Please, fill out security code (CVV/CVC) of the
+                        card!</span>
+                    <span class="px-3 text-danger"
+                          *ngIf="securityCode.errors?.['minlength']">A valid security code must be 3 characters
+                        long!</span>
+                    <span class="px-3 text-danger"
+                          *ngIf="securityCode.errors?.['maxlength']">A valid security code must be 3 characters
+                        long!</span>
+                </ng-container>
+            </div>
+
+        </div>
+        <p class="d-flex align-items-center mb-3 flex-column"><button class="btn btn-outline-warning">Update Payment
+                Detail</button></p>
+    </form>
+</ng-template>

@@ -3,32 +3,38 @@
     <div class="bg-white d-flex flex-column flex-md-row flex-lg-row py-3">
 
         <div class="col-auto col-md-7 col-lg-7 col-xl-6 mx-lg-auto">
-            <app-payment-detail-form (paymentFormSubmittedEvent)="refetchOnFormSubmit($event)" />
+            <app-payment-detail-form [itemToEdit]="selectedListItem"
+                                     (paymentFormSubmittedEvent)="refetchOnFormSubmit($event)" />
         </div>
 
         <div class="col-auto col-md-5 col-lg-4 mx-lg-auto">
             <ul class="list-group rounded-4">
-                
-                <li class="list-group-item d-flex align-items-center flex-column border px-3 py-3"
-                    *ngFor="let payment of paymentList">
+
+                <li *ngFor="let payment of paymentList; even as isEven; trackBy:paymentListTrackBy"
+                    class="list-group-item d-flex align-items-center flex-column border p-3">
+
                     <div class="d-flex flex-column flex-md-row flex-lg-row align-items-center gap-3">
-                        <div class="fw-lighter text-dark">
-                            <p class="color-teal pb-1 my-1 fw-light fs-5 border-bottom border-2 mouse-hover">
+                        <div class="fw-lighter text-dark" (click)="populateForm(payment)">
+                            <p
+                               class="color-teal pb-1 my-1 fw-light fs-5 border-bottom border-2 mouse-hover">
                                 {{payment.cardOwnerName}}
                             </p>
                             <p class="my-1 text-break">
                                 {{payment.cardNumber}}
                             </p>
-                            <p class="my-1">
-                                <i class="fas fa-calendar-alt me-2 opacity-75"></i>{{payment.expirationDate}}
+                            <p class="my-1"><i class="fas fa-calendar-alt me-2 opacity-75"></i>
+                                {{payment.expirationDate}}
                             </p>
                         </div>
+
                         <div class="text-danger">
-                            <i class="fas fa-trash-can fa-lg mouse-hover"></i>
+                            <i class="fas fa-trash-can fa-lg mouse-hover"
+                               (click)="paymentDetailDeleteHandler(payment.paymentDetailId)"></i>
                         </div>
                     </div>
+
                 </li>
-            
+
             </ul>
         </div>
     </div>

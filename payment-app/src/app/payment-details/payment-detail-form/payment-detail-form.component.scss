@@ -14,7 +14,8 @@ div.d-flex+p {
 
 p+span,
 span+p {
-    margin: 0;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 form span.text-danger {
@@ -31,6 +32,7 @@ p:last-of-type {
 }
 
 @media screen and (max-width:500px) {
+
     form label,
     form input::placeholder,
     form p>button.btn.btn-outline-success {

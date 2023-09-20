@@ -1,0 +1,23 @@
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+article * {
+    text-align: center;
+}
+
+img {
+    min-height: 400px;
+}
+
+@media screen and (max-width:500px) {
+    section.card-header h3 {
+        font-size: 2.1rem;
+    }
+
+    section.card-body h6 {
+        font-size: 1.5rem;
+    }
+}

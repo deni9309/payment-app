@@ -1,0 +1,13 @@
+nav{
+    position: relative;
+}
+
+nav button.navbar-toggler:focus{
+   outline: gainsboro solid 5px !important;
+   border: 0 !important;
+}
+
+nav button.navbar-toggler {
+    outline: gainsboro solid 2px !important;
+    border: 0 !important;
+}

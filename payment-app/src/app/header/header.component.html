@@ -1,0 +1,47 @@
+<nav class="navbar bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand display-3 fs-3 text-success pt-2"
+           routerLink="/home"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact:true}"><i class="fas fa-lightbulb"></i> MoneyPay</a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="offcanvas offcanvas-end pt-3"
+             tabindex="-1"
+             id="offcanvasNavbar"
+             aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header pb-0">
+                <h5 class="offcanvas-title"
+                    id="offcanvasNavbarLabel">Menu</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <hr class="nav-divider">
+                <ul class="navbar-nav nav-underline justify-content-end flex-grow-1 px-3">
+                    <li class="nav-item">
+                        <a class="nav-link link-success link-opacity-75-hover text-decoration-none"
+                           aria-current="page"
+                           routerLink="/home"
+                           routerLinkActive="active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-success link-opacity-75-hover text-decoration-none"
+                           routerLink="/payment-details"
+                           routerLinkActive="active">Payment Details</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+</nav>

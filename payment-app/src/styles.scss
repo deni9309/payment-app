@@ -7,6 +7,17 @@ $prefix: "mo-";
 // Then import Bootstrap
 @import "../node_modules/bootstrap-scss/bootstrap.scss";
 
+@import '../node_modules/bootstrap-scss/functions';
+@import '../node_modules/bootstrap-scss/variables';
+@import '../node_modules/bootstrap-scss/mixins';
+@import '../node_modules/ngx-toastr/toastr';
+// bootstrap style toast
+// or import a bootstrap 4 alert styled design (SASS ONLY)
+// should be after your bootstrap imports, it uses bs4 variables, mixins, functions
+// if you'd like to use it without importing all of bootstrap it requires
+@import '../node_modules/ngx-toastr/toastr-bs5-alert';
+
+
 * {
     transition: all 0.25s ease-in-out !important;
 }
@@ -17,7 +28,7 @@ body {
     color: #555;
 }
 
-main {
+body {
     background-color: #bababa;
     background-blend-mode: screen;
     background-image: url('./assets/background.jpg');
@@ -57,6 +68,11 @@ form input {
     font-weight: lighter !important;
     color: teal !important;
     border: none !important;
+}
+
+form.submitted input.ng-invalid {
+    border: 1px solid rgba(255, 0, 0, 0.5) !important;
+    box-shadow: 0px 0px 7px inset rgba(255, 0, 0, 0.5);
 }
 
 button {
